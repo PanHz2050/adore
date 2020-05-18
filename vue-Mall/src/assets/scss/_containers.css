@@ -1,0 +1,23 @@
+.g-container {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  max-width: 640px;
+  min-width: 320px;
+  height: 100%;
+  margin: 0 auto;
+}
+
+.g-view-container {
+  height: 100%;
+  padding-bottom: 50px;
+}
+
+.g-footer-container {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: 1000;
+  width: 100%;
+  box-shadow: 0 0 10px 0 rgba(154, 141, 141, 0.6);
+}

@@ -1,0 +1,129 @@
+<template>
+  <!-- 搜索历史 -->
+  <!-- 是否显示历史记录 v-if -->
+  <div class="history" v-if="historys.length">
+    <h4 class="history-title">历史搜索</h4>
+    <!-- tag替代ul 动画效果 name方便写css样式  -->
+    <transition-group class="g-list" name="list" tag="ul">
+      <li
+        class="g-list-item"
+        v-for="item in historys" :key="item"
+        @click="$_search_selectItem(item)"
+      >
+        <span class="g-list-text">{{item}}</span>
+        <i
+          class="iconfont icon-delete"
+          @click.stop="removeItem(item)"
+        >
+        </i>
+      </li>
+    </transition-group>
+    <!-- 弹出确认按钮框 -->
+    <a
+      href="javascript:;"
+      class="history-btn"
+      @click="showConfirm"
+    >
+      <i class="iconfont icon-clear"></i>
+      清空历史搜索
+    </a>
+  </div>
+</template>
+
+<script>
+  import storage from 'assets/js/storage';
+  import {SEARCH_HISTORY_KEYWORD_KEY} from './config';
+  import {searchMixin} from 'assets/js/mixins';
+
+  export default {
+    name: 'SearchHistory',
+    mixins: [searchMixin],
+    data() {
+      return {
+        // 保存历史搜索记录
+        historys: []
+      };
+    },
+    created() {
+      this.getKeyword();
+    },
+    methods: {
+      // 每删除一条滚动条,更新高度
+      update() {
+        this.getKeyword();
+      },
+      getKeyword() {
+        this.historys = storage.get(SEARCH_HISTORY_KEYWORD_KEY, []);
+      },
+      // 点击移除对应的历史记录
+      removeItem(item) {
+        this.historys = this.historys.filter(val => val !== item);
+        storage.set(SEARCH_HISTORY_KEYWORD_KEY, this.historys);
+        // 解决计算scroll高度问题
+        setTimeout(() => {
+          this.$emit('remove-item', item);
+        }, 100);
+      },
+      // 弹框确认删除记录
+      showConfirm() {
+        this.$emit('show-confirm');
+      },
+      // 父组件clearAllSearchHistorys
+      clear() {
+        storage.remove(SEARCH_HISTORY_KEYWORD_KEY);
+      }
+    }
+  };
+</script>
+
+<style lang="scss" scoped>
+@import "~assets/scss/mixins";
+
+  .history {
+    padding-bottom: 30px;
+    background-color: #fff;
+
+    &-title {
+      height: 34px;
+      line-height: 34px;
+      padding: 0 10px;
+      font-size: $font-size-l;
+      font-weight: bold;
+    }
+
+    &-btn {
+      @include flex-center();
+      width: 80%;
+      height: 40px;
+      background: none;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      margin: 0 auto;
+      color: #686868;
+
+      .iconfont {
+        margin-right: 5px;
+      }
+    }
+  }
+
+  .g-list {
+    border-top: 1px solid $border-color;
+    border-bottom: 1px solid $border-color;
+    margin-bottom: 20px;
+  }
+
+  .list {
+    &-enter-active,
+    &-leave-active {
+      // 高度100毫秒之内变为0
+      transition: height 0.1s;
+    }
+
+    &-enter,
+    &-leave-to {
+      height: 0;
+    }
+  }
+
+</style>
