@@ -26,7 +26,7 @@ const shuffle = (arr) => {
 
 // home slider获取幻灯片的数据--ajax
 export const getHomeSlider = () => {
-  return axios.get('http://www.imooc.com/api/home/slider', {
+  return axios.get('https://www.imooc.com/api/home/slider', {
     timeout: TIMEOUT
   }).then(res => {
     // 返回数据之前先判断 是否有错误 // 用SUCC_CODE代替0 更具语义化

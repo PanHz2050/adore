@@ -4,7 +4,7 @@ import {jsonpOptions, TIMEOUT} from './config';
 
 // 获取热门搜索数据--ajax
 export const getSearchHotKeyword = () => {
-  return axios.get('http://www.imooc.com/api/search/hot', {
+  return axios.get('https://www.imooc.com/api/search/hot', {
     // timeout: 10
     timeout: TIMEOUT
   }).then(res => {

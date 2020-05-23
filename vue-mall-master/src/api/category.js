@@ -10,7 +10,7 @@ export const getCategoryContent = (id) => {
   cancel = null;
 
   // es6模板字符串``进行拼接
-  return axios.get(`http://www.imooc.com/api/category/content/${id}`, {
+  return axios.get(`https://www.imooc.com/api/category/content/${id}`, {
     timeout: TIMEOUT,
     cancelToken: new CancelToken(function executor(c) {
       cancel = c;
