@@ -36,7 +36,7 @@ export const getHomeSlider = () => {
       // 包含一张图片的数组
       const slider = [sliders[Math.floor(Math.random() * sliders.length)]];
       // 筛选 filter会变量数组中的每一个值 0.5这里值控制幻灯片张数
-      sliders = shuffle(sliders.filter(() => Math.random() >= 0.5));
+      sliders = shuffle(sliders.filter(() => Math.random() <= 0.5));
       // 判断避免为零张图片
       if (sliders.length === 0) {
         sliders = slider;
