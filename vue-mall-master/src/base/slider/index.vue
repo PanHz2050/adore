@@ -18,7 +18,7 @@
 			direction: {
 				type: String,
 				default: 'horizontal',
-				// validator 验证
+				// 验证
 				validator(value) {
 					return ['horizontal', 'vertical'].indexOf(value) > -1;
 				}
@@ -40,31 +40,28 @@
 				type: Boolean,
 				default: true
 			},
-			// 这里data和home slider有关
 			data: {
 				type: Array,
-				// 数组不是基本类型 返回来的是个引用
 				default() {
 					return [];
 				}
 			}
 		},
-		// 数据
 		data() {
 			return {
 				keyId: Math.random()
 			};
 		},
 		watch: {
-			// 检测数据 一旦发生了变化 就可以修改key值了
+			// 检测数据 一旦发生了变化 修改key
 			data(newData) {
-				// 做临界值的判断
+				// 临界值判断
 				if (newData.length === 0) {
 					return;
 				}
 				// 当刷出>=1张幻灯片时 恢复无缝滚动
 				this.swiperOption.loop = newData.length === 1 ? false : this.loop;
-				// key值改变 触发生命函数 钩子
+				// key值改变 触发生命函数钩子
 				this.keyId = Math.random();
 			}
 		},
@@ -83,7 +80,7 @@
 						  }
 						: false,
 					slidesPerView: 1,
-					// 判断无缝滚动 如果一张的时候 就关闭
+					// 判断无缝滚动 一张关闭
 					loop: this.data.length <= 1 ? false : this.loop,
 					pagination: {
 						el: this.pagination ? '.swiper-pagination' : null

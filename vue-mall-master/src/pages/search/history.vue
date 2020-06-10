@@ -1,9 +1,7 @@
 <template>
-  <!-- 搜索历史 -->
-  <!-- 是否显示历史记录 v-if -->
   <div class="history" v-if="historys.length">
     <h4 class="history-title">历史搜索</h4>
-    <!-- tag替代ul 动画效果 name方便写css样式  -->
+    <!-- tag替代ul 动画效果 name css样式  -->
     <transition-group class="g-list" name="list" tag="ul">
       <li
         class="g-list-item"
@@ -40,7 +38,6 @@
     mixins: [searchMixin],
     data() {
       return {
-        // 保存历史搜索记录
         historys: []
       };
     },
@@ -55,20 +52,16 @@
       getKeyword() {
         this.historys = storage.get(SEARCH_HISTORY_KEYWORD_KEY, []);
       },
-      // 点击移除对应的历史记录
       removeItem(item) {
         this.historys = this.historys.filter(val => val !== item);
         storage.set(SEARCH_HISTORY_KEYWORD_KEY, this.historys);
-        // 解决计算scroll高度问题
         setTimeout(() => {
           this.$emit('remove-item', item);
         }, 100);
       },
-      // 弹框确认删除记录
       showConfirm() {
         this.$emit('show-confirm');
       },
-      // 父组件clearAllSearchHistorys
       clear() {
         storage.remove(SEARCH_HISTORY_KEYWORD_KEY);
       }

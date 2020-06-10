@@ -1,20 +1,15 @@
 <template>
 	<div class="recommend">
 		<h3 class="recommend-title">热卖推荐</h3>
-    <!-- 获取数据之前 加载 loading 小图标 -->
     <div class="loading-container" v-if="!recommends.length">
-      <!-- inline让它一行显示 -->
       <me-loading inline/>
     </div>
 		<ul class="recommend-list" v-else>
-			<!-- 点击跳转详情页 更路由有关系 -->
 			<li
 				class="recommend-item"
 				v-for="(item, index) in recommends"
 				:key="index"
 			>
-				<!-- to跳转到product页面 不能写 /home  -->
-				<!-- id: item.baseinfo.itemId 淘宝的数据接口 -->
 				<router-link
 					class="router-link"
 					:to="{ name: 'home-product', params: { id: item.baseinfo.itemId } }"

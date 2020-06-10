@@ -9,7 +9,6 @@ export const getCategoryContent = (id) => {
   cancel && cancel('取消了前一次的请求!');
   cancel = null;
 
-  // es6模板字符串``进行拼接
   return axios.get(`https://www.imooc.com/api/category/content/${id}`, {
     timeout: TIMEOUT,
     cancelToken: new CancelToken(function executor(c) {
@@ -25,7 +24,6 @@ export const getCategoryContent = (id) => {
     if (axios.isCancel(err)) { // 取消前一次的请求
       console.log(err);
     } else { 
-      // 否则才是处理错误
       console.log(err);
     }
   });

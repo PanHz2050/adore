@@ -16,9 +16,6 @@
 
 	export default {
     name: 'HomeNav',
-    // 需要变化或者响应的数据适合放data中 
-    // navs一般只需要渲染一次 所以可以不用放data中
-    // created不能响应变化
     created() {
       this.navs = navItems;
     }

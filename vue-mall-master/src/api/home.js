@@ -15,7 +15,6 @@ const shuffle = (arr) => {
 
   while (i--) {
     if (i !== (rndNum = Math.floor(Math.random() * arrLength))) {
-      // ES6解构赋值写法 不需要第三个变量 进行交换赋值
       [arr[i], arr[rndNum]] = [arr[rndNum], arr[i]];
     }
   }
@@ -29,13 +28,11 @@ export const getHomeSlider = () => {
   return axios.get('https://www.imooc.com/api/home/slider', {
     timeout: TIMEOUT
   }).then(res => {
-    // 返回数据之前先判断 是否有错误 // 用SUCC_CODE代替0 更具语义化
+    // 返回数据之前先判断 是否有错误 // 用SUCC_CODE代替0
     if (res.data.code === SUCC_CODE) {
-      // 取到幻灯片
       let sliders = res.data.slider;
-      // 包含一张图片的数组
       const slider = [sliders[Math.floor(Math.random() * sliders.length)]];
-      // 筛选 filter会变量数组中的每一个值 0.5这里值控制幻灯片张数
+      // 筛选 filter会变量数组中的每一个值
       sliders = shuffle(sliders.filter(() => Math.random() <= 0.5));
       // 判断避免为零张图片
       if (sliders.length === 0) {
@@ -57,7 +54,7 @@ export const getHomeSlider = () => {
     }];
   })
   // .then(data => {
-  //   // 模拟延迟加载数据 Promise异步操作相关
+  //   // 模拟
   //   return new Promise(resolve => {
   //     setTimeout(() => {
   //       resolve(data);
@@ -83,7 +80,6 @@ export const getHomeRecommend = (page = 1, psize = HOME_RECOMMEND_SIZE) => {
       return res;
     }
 
-    // 如果状态码不对的 手动的抛出错误
     throw new Error('没有成功获取到数据!');
   }).catch(err => {
     if (err) {
@@ -92,7 +88,6 @@ export const getHomeRecommend = (page = 1, psize = HOME_RECOMMEND_SIZE) => {
 
   })
   // .then(data => {
-  //   // 模拟延迟加载数据 Promise异步操作相关
   //   return new Promise(resolve => {
   //     setTimeout(() => {
   //       resolve(data);

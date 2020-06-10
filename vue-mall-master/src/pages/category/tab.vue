@@ -30,12 +30,11 @@
 		},
 		created() {
       this.init();
-      // 默认是点击之后触发 但是进来就默认被点中一个li的激活状态
+      // 默认点击后触发 进来默认被点中一个li的激活状态
       this.switchTab(this.items[0].id);
 		},
 		methods: {
 			init() {
-				// 获取tab数据 填充html
 				this.items = categoryNames;
 			},
 			// 当点击tab的item时,会传一个id进来

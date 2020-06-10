@@ -1,5 +1,5 @@
 <template>
-	<!-- 所有需要滚动的内容都在 ref="swiper" -->
+	<!-- 滚动的内容 ref="swiper" -->
 	<swiper :options="swiperOption" ref="swiper">
 		<!-- 下拉刷新功能 -->
 		<div class="mine-scroll-pull-down" v-if="pullDown">
@@ -12,7 +12,7 @@
 		<div class="mine-scroll-pull-up" v-if="pullUp">
 			<me-loading :text="pullUpText" inline ref="pullUpLoading" />
 		</div>
-		<!-- 控制是否显示滚动条 swiper组件中的scrollbar -->
+		<!-- 控制滚动条 swiper scrollbar -->
 		<div class="swiper-scrollbar" v-if="scrollbar" slot="scrollbar"></div>
 	</swiper>
 </template>
@@ -129,7 +129,7 @@
 				const swiper = this.$refs.swiper.swiper;
 
 				// 滚动时需要触发scroll事件 将translate swiper传出去
-				// 滚动的时候需要时刻监听一下 让返回顶部的按钮显示隐藏
+				// 滚动的时候需要时刻监听 让返回顶部的按钮显示隐藏
 				this.$emit('scroll', swiper.translate, this.$refs.swiper.swiper);
 
 				if (this.pulling) {
@@ -167,17 +167,17 @@
 					}
 				}
 			},
-			// 滚动条滑动结束需要做的事
+			// 滚动条滑动结束
 			scrollEnd() {
 				this.$emit(
 					'scroll-end',
 					this.$refs.swiper.swiper.translate,
 					this.$refs.swiper.swiper,
-					// 把pulling传出homeindex那里接收
+					// 把pulling homeindex接收
 					this.pulling
 				);
 			},
-			// 滚动结束之后需要做的事
+			// 滚动结束之后
 			touchEnd() {
 				if (this.pulling) {
 					return;
@@ -199,8 +199,8 @@
 					swiper.setTranslate(PULL_DOWN_HEIGHT);
 					swiper.params.virtualTranslate = true; // 定住不给回弹
 					this.$refs.pullDownLoading.setText(PULL_DOWN_TEXT_ING);
-					// 这是基础组件 不真的加载数据 所以用emit这里要触发一个事件
-					// pull-down在home_index写
+					// 基础组件 不加载数据
+					// pull-down home_index
 					this.$emit('pull-down', this.pullDownEnd);
 				}
 
@@ -227,7 +227,7 @@
 				}
 			},
 			// this.$emit('pull-down', this.pullDownEnd);
-			// pullDownEnd 加载完成之后要执行的方法
+			// pullDownEnd 加载完成后
 			pullDownEnd() {
 				const swiper = this.$refs.swiper.swiper;
 
@@ -237,13 +237,13 @@
 				swiper.allowTouchMove = true;
 				swiper.setTransition(swiper.params.speed);
 				swiper.setTranslate(0);
-				// 下拉滑动完成需要做的事,需要把header显示出来
+				// 下拉滑动完成, header显示
 				setTimeout(() => {
 					this.$emit('pull-down-transition-end');
 				}, swiper.params.speed);
 			},
 			// this.$emit('pull-up', this.pullUpEnd);
-			// pullUpEnd 加载完成之后要执行的方法
+			// pullUpEnd 加载完成后
 			pullUpEnd() {
 				const swiper = this.$refs.swiper.swiper;
 
@@ -266,7 +266,7 @@
 		height: auto;
 	}
 
-	// 下拉刷新 默认是看不到的
+	// 下拉刷新 默认看不到
 	.mine-scroll-pull-down {
 		position: absolute;
 		left: 0;
@@ -275,7 +275,7 @@
 		height: 80px;
 	}
 
-	// 上拉加载更多样式
+	// 上拉加载更多
 	.mine-scroll-pull-down,
 	.mine-scroll-pull-up {
 		position: absolute;

@@ -1,6 +1,6 @@
 <template>
   <div class="result">
-    <!-- loading 选择是否显示 -->
+    <!-- loading -->
     <div class="loading-container" v-show="loading">
       <me-loading/>
     </div>
@@ -28,7 +28,6 @@
     components: {
       MeLoading
     },
-    // searchindex变量
     props: {
       query: {
         type: String,
@@ -54,7 +53,6 @@
         }
         // 获取数据时显示loading
         this.loading = true;
-        // 获取数据,html填充数据
         getSearchResult(keyword).then(data => {
           if (data) {
             this.results = data;

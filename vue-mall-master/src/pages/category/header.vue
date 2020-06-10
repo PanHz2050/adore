@@ -24,11 +24,10 @@
       MeSearchBox
     },
     methods: {
-      // 获取输入框的值
+      // 获取输入框
       getQuery(query) {
         console.log(query);
       },
-      // 点击输入框,跳转search页面
       goToSearch() {
         this.$router.push('/search');
       }

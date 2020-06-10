@@ -2,12 +2,10 @@
 	<transition name="search">
 		<div class="search">
 			<header class="g-header-container">
-        <!-- 监听query -->
 				<search-header @query="getQuery"/>
 			</header>
 			<div class="g-content-container">
         <me-scroll ref="scroll">
-          <!-- v-show 隐藏 显示 热词和记录 -->
           <search-hot 
             v-show="!query"
             @loaded="updateScroll"

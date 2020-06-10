@@ -1,5 +1,5 @@
 <template>
-  <!-- 包一层transition来实现显示隐藏动画效果 -->
+  <!-- 显示隐藏动画效果 -->
 	<transition name="mine-backtop">
 		<a
 			href="javascript:;"

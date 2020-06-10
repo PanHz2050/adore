@@ -1,6 +1,6 @@
 <template>
 	<div class="mine-loading" :class="{ 'mine-loading-inline': inline }">
-		<!-- 文字和指示器并不一定需要总出现的 通过v-if来控制 -->
+		<!-- 文字和指示器 v-if -->
 		<span class="mine-loading-indicator" v-if="indicator === 'on'">
 			<slot> <img src="./loading.gif" alt="loading" /> </slot>
 		</span>
@@ -67,7 +67,7 @@
 		}
 	}
 
-	// 它们两都要存在才会生效
+	// 同时存在生效
 	.mine-loading-indicator ~ .mine-loading-text {
 		margin-top: 8px;
 	}

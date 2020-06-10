@@ -5,7 +5,6 @@
     <div class="loading-container" v-if="!hots.length">
       <me-loading/>
     </div>
-    <!-- 获取到数据,开始填充内容 -->
     <ul class="hot-list" v-else>
       <li
         class="hot-item"

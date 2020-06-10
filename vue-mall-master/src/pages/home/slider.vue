@@ -1,6 +1,4 @@
 <template>
-	<!-- slider业务相关 -->
-	<!-- <me-slider> 在这里面传参 参数在 base 组件中 -->
 	<div class="slider-wrapper">
 		<!-- !sliders.length 没有图片的时候 -->
 		<me-loading v-if="!sliders.length"/>
@@ -25,7 +23,7 @@
 </template>
 
 <script>
-	// 引入基础组件slider 包装一层填充相关数据 变成业务组件
+	// 引入基础组件slider 包装一层填充相关数据 业务组件
 	import MeSlider from 'base/slider';
 	import { swiperSlide } from 'vue-awesome-swiper';
 	import { sliderOptions } from './config';
@@ -47,17 +45,10 @@
 				loop: sliderOptions.loop,
 				interval: sliderOptions.interval,
 				pagination: sliderOptions.pagination,
-				sliders: [
-				// 	{
-				//  'linkUrl':'',
-				//  // 本地图片 通过 require 来引入
-        //  'picUrl':require('./1.jpg')
-        // }
-				]
+				sliders: []
 			};
 		},
 		created() {
-			// 获取到数据 赋值sliders
 			this.getSliders();
 		},
 		methods: {
@@ -67,7 +58,6 @@
 			},
 
 			getSliders() {
-				// 返回promise对象
 				return getHomeSlider().then(data => {
 					this.sliders = data;
 				});

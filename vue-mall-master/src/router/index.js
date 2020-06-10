@@ -1,11 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 // import Home from 'pages/home'
-// import Category  from 'pages/category'
-// import Cart from 'pages/cart'
-// import Personal from 'pages/personal'
-// import Search from 'pages/search'
-// // 二级路由
+// 二级路由
 // import Product from 'pages/product' 
 
 Vue.use(Router)

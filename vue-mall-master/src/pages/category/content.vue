@@ -49,7 +49,6 @@
 </template>
 
 <script>
-	// 接口: www.imooc.com/api/category/content/id(这里是id) 具体在category.js
 	import MeLoading from 'base/loading';
 	import MeScroll from 'base/scroll';
 	import MeBacktop from 'base/backtop';
@@ -88,14 +87,11 @@
 					this.isLoading = false;
 					this.backToTop(0);
 				});
-				// console.log(this.getContent);
 			}
     },
     
 		methods: {
-      
-			// 获取content数据,然后填充html结构
-			// 缓存功能在getContent写
+			// 获取content数据, 渲染
 			getContent(id) {
 				// 获取本地缓存内容
 				let contents = storage.get(CATEGORY_CONTENT_KEY);
@@ -108,55 +104,48 @@
 					updateTime = contents[id].updateTime || 0;
 					if (curTime - updateTime <= CATEGORY_CONTENT_UPDATE_TIME_INTERVAL) {
 						// 如果条件成立,就走缓存
-						// return 要把它变成promise对象
+						// return promise对象
 						return this.getContentByLocalStorage(contents[id]);
 					} else {
 						// 走http
-						// 成功获取之后 then更新内容
+						// 成功获取 更新内容
 						return this.getContentByHTTP(id).then(() => {
 							this.updateLocalStorage(contents, id, curTime);
 						});
 					}
-				} else { // 如果获取不到 完全走http
-					// 成功获取之后 then更新内容
+				} else { // 获取不到 完全走http
+					// 成功获取
 					return this.getContentByHTTP(id).then(() => {
 						this.updateLocalStorage(contents, id, curTime);
 					});
 				}
 			},
 
-			// 获取本地缓存内容
+			// 本地缓存
 			getContentByLocalStorage(content) {
 				this.content = content.data;
-				// resolve 表示成功获取到了数据
 				return Promise.resolve();
 			},
 
-      // 里面的内容之前写过的,放进来,改一下
-      // 别忘了getContentByHTTP(id)
 			getContentByHTTP(id) {
-				// 这一步是从服务器获取的,成功then
+				// 服务器获取
 				return getCategoryContent(id).then(data => {
 					return new Promise(resolve => {
 						if (data) {
 							this.content = data;
-							// 成功之后才会执行resolve
+							// 成功执行resolve
 							resolve();
 						}
 					});
 				});
 			},
 
-			// 最后就是更新缓存了,会调用localStorage提供的api
+			// 更新缓存,  调用localStorage api
 			updateLocalStorage(contents, id, curTime) {
-				// 先判断有没有值
 				contents = contents || {};
-				// 更新这个id对应的内容
 				contents[id] = {};
 				contents[id].data = this.content;
-				// 目前更新的
 				contents[id].updateTime = curTime;
-				// 把内容设置进去,覆盖原来的
 				storage.set(CATEGORY_CONTENT_KEY, contents);
 			},
 

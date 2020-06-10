@@ -8,8 +8,6 @@
         <category-tab @switch-tab="getCurrentId"/>
       </div>
       <div class="main">
-        <!-- tab和cont是兄弟组件 不可以直接通信 
-         这里把tab里的id传入父组件index这,然后再传给子组件content -->
         <category-content :curId="curId"/>
       </div>
     </div>

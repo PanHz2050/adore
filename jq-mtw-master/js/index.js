@@ -152,7 +152,7 @@
         });
     }
 
-    //lazyLoad
+    //lazyLoad懒加载
 
     var lazyLoad = {};
 
@@ -870,8 +870,6 @@
             }]
         ]
     }];
-
-
 
 
     floor.buildFloor = function(floorData) {

@@ -2,7 +2,7 @@
 	 <div class="mine-search-box-wrapper">
     <i class="iconfont icon-search"></i> 
     <div class="mine-search-box" v-if="fake">{{placeholder}}</div>
-    <!-- v-model用双向绑定数据 -->
+    <!-- v-model双向绑定数据 -->
     <input
       class="mine-search-box"
       type="text"
@@ -38,7 +38,6 @@
     },
 		data() {
 			return {
-        // 定义query,默认为空
         query: ''
       };
     },
@@ -50,15 +49,14 @@
       })
     },
     methods: {
-      // 清除和获取焦点
+      // 清除 获取焦点
       focus() {
         this.$refs.input && this.$refs.input.focus();
       },
-      // 清除input框输入的内容
+      // 清除input框输入
       clear() {
         this.query = '';
       },
-      // this指向
       reset() {
         this.clear(); 
         this.focus();

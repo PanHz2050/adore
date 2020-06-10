@@ -51,7 +51,6 @@
 			HomeRecommend,
 			MeBacktop
 		},
-		// 接收recommend
 		data() {
 			return {
 				recommends: [],
@@ -61,11 +60,9 @@
 		},
 		methods: {
 			updateScroll() {
-				// console.log('updateScroll');
 			},
 			getRecommends(recommends) {
 				this.recommends = recommends;
-				// console.log('getRecommends');
 			},
 			pullToRefresh(end) {
 				// setTimeout(() => {
@@ -92,36 +89,25 @@
 					});
 				// console.log(end);
 			},
-			// scroll手拖动的时候会触发
+			// scroll手拖动触发
 			scroll(translate) {
 				this.changeHeaderStatus(translate);
 			},
 			// 滑动滚动条控制什么时候显示隐藏
 			// scrollEnd(translate, scroll)这里面的是形参
 			scrollEnd(translate, scroll, pulling) {
-				// 如果pulling不存在 不在加载的时候执行
 				if (!pulling) {
 					this.changeHeaderStatus(translate);
 				}
-				// 滚过一屏的高度显示(可视区的高度)
 				this.isBacktopVisible = translate < 0 && -translate > scroll.height;
-				// 滚动完成之后还需要改变一下header状态
 			},
-			// 解决下拉刷新加载过程中,header显示的问题
-			// 实现下拉刷新时,header部分隐藏
 			pullDownTransitionEnd() {
-				// 上拉刷新加载完成之后显示header部分
 				this.$refs.header.show();
 			},
-      // 点击返回顶部按钮返回顶部
       backToTop() {
-        // 获取滚动条看看它存不存在 存在就调用scrollToTop
-        //  这是之前提供的api 专门用来返回顶部的
         this.$refs.scroll && this.$refs.scroll.scrollToTop();
 			},
-			// 显示隐藏header头部的状态,translate滚动条滚动的距离
 			changeHeaderStatus(translate) {
-				// 表示正在上拉
 				if (translate > 0) {
 					this.$refs.header.hide();
 					return;

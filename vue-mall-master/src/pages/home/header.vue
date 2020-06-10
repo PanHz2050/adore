@@ -23,25 +23,22 @@
       MeNavbar,
       MeSearchBox
     },
-    // 控制显示隐藏
     data() {
       return {
         visible: true
       }
     },
     methods: {
-      // 控制header显示隐藏
       show() {
         this.visible = true;
       },
       hide() {
         this.visible = false;
       },
-      // 获取输入框的值
+      // 获取输入框
       getQuery(query) {
         console.log(query);
       },
-      // 点击输入框,跳转search页面
       goToSearch() {
         this.$router.push('/search');
       }
