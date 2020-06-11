@@ -28,7 +28,7 @@ class App extends Component {
                     <Route path='/:id?' component={List} />
                   </Switch>
               </Content>
-              <Footer className="footer">@Copyright Dell-Lee 2020</Footer>
+              <Footer className="footer">@Copyright Mr.Pan 2019</Footer>
         </Layout>
       </BrowserRouter>
     )

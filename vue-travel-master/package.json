@@ -14,7 +14,6 @@
     "axios": "^0.17.1",
     "better": "^0.1.0",
     "better-scroll": "^1.8.1",
-    "express": "^4.17.1",
     "scroll": "^3.0.1",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.1",

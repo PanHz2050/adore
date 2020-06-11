@@ -38,7 +38,7 @@ export default {
       // 两种写法
       // axios.get('/api/detail.json?id=' + this.$route.params.id)
       axios
-        .get("/static/mock/detail.json", {
+        .get("/api/detail.json", {
           params: {
             id: this.$route.params.id
           }

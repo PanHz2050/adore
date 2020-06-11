@@ -45,7 +45,7 @@ export default {
   },
   methods: {
     getCityInfo() {
-      axios.get('/static/mock/city.json')
+      axios.get('/api/city.json')
         .then(this.handleGetCityInfoSucc)
     },
     handleGetCityInfoSucc (res) {
@@ -55,7 +55,6 @@ export default {
         this.city = data.city
         this.hotCities = data.hotCities
         this.cities = data.cities
-        // console.log(data)
       }
     },
     // 这个方法是子组件alphabet
