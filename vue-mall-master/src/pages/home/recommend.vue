@@ -99,7 +99,6 @@
 			text-align: center;
 
 			// 热卖推荐两边的线
-			// 写到title里面
 			&:before,
 			&:after {
 				content: '';
