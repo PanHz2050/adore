@@ -1,6 +1,5 @@
 <template>
   <div class="list" ref="wrapper">
-    <!-- 包一层div,是scroll规定的语法 -->
     <div class="scroll-wrapper">
       <!-- 当前城市 -->
       <div class="area">
